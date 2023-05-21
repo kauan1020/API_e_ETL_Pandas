@@ -174,6 +174,7 @@ if datetime.today().day == 1:
     agendar_atualizacao_mensal()
 
 print(datetime.today().day)
+
 # loop para manter o programa em execução
 while True:
     schedule.run_pending()

@@ -97,6 +97,8 @@ with DAG(
             # Bind the temporary data to the main dataframe
             df = df._append(tmp_df)
 
+        df.to_csv("df.csv", index=False)
+
     ingestao_api = PythonOperator(
         task_id='ingestao_api',
         python_callable=ingestao_api(),
@@ -104,6 +106,8 @@ with DAG(
     )
 
     ## separar os dados em prescribers e prescriptions e escrever em formato csv
+
+    df = pd.read_csv('df.csv', sep=';', decimal=',')
     def separar_prescibers_prescriptions():
         prescribers = df[['PRACTICE_CODE', 'PRACTICE_NAME', 'ADDRESS_1', 'ADDRESS_2', 'ADDRESS_3', 'ADDRESS_4',
                           'POSTCODE']].drop_duplicates()
@@ -220,3 +224,5 @@ with DAG(
         dag=dag
     )
 
+    ingestao_api >> separar_prescibers_prescriptions >> top10_quimicos >> top_custos >> top_prescicoes >> produto_por_prescritor
+    produto_por_prescritor >> prescritores_ultimo_mes >> prescricoes_regiao_atendidas >> media_preco_ultimo_mes >> maior_valor_usuario

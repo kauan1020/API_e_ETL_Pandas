@@ -1,7 +1,6 @@
 ## importando bibliotecas nescessárias
 import schedule
 import time
-
 from datetime import datetime
 import grequests
 import re

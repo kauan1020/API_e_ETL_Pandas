@@ -2,7 +2,7 @@
 
 - A aplicação realizara o processo de ingestão dos dados da API e após isso o processo de  transformação, ao terminar continuará rodando devido ao scheduler que ficará aguardando todo dia 1 do mês para a verificação de novos dados presentes na API.
 
-![diagram](png/diagram.png)
+![diagram](https://github.com/kauan1020/API_e_ETL_Pandas/blob/main/png/diagram.PNG)
 
 ## Setup para executar a aplicação
 
